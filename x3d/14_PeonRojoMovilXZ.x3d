@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile='Immersive'>
+    <Scene>
+        <Transform rotation=' 1 0 0 1.57 '>
+                <PlaneSensor DEF='MuevePeon'></PlaneSensor>
+                <Transform rotation=' 1 0 0 -1.57 ' DEF='Peon'>
+                    <Inline url='"PeonRojo.x3d"'></Inline>
+                </Transform>
+        </Transform>
+        <ROUTE fromNode='MuevePeon' fromField='translation_changed' toNode='Peon' toField='set_translation'>
+        </ROUTE>
+    </Scene>
+</X3D>

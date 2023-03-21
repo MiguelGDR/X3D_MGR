@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <script src='https://create3000.github.io/code/x_ite/latest/x_ite.min.js'></script>
+    <style>
+        x3d-canvas {
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <x3d-canvas>
+        <X3D profile='Immersive'>
+            <Scene>
+                <Viewpoint description='vista panoramica' orientation='1 0 0 -0.35' position=' 0 4 8'></Viewpoint>
+                <PointLight DEF= 'Luz' color='0.8 0.8 0.0' on='false' location='0 20 0'></PointLight>
+                <TouchSensor DEF='Pulsador' description='Pulsa tablero para encender luz'></TouchSensor>
+                <Sound location='0 0 0' maxBack='10' maxFront='10' minBack='5' minFront='5'>
+                    <AudioClip DEF='Sonido' loop= 'false' url='"sonidos/willow1.wav"'></AudioClip>
+                </Sound>
+                <Transform translation='0 1.5 0'>
+                    <Inline url='"x3d/14_PeonRojoMovilXZ.x3d"'></Inline>
+                </Transform>
+                <Shape>
+                    <Appearance>
+                        <Material diffuseColor='1.0 1.0 1.0' />
+                    </Appearance>
+                    <Box size='20 0.5 20' />
+                </Shape>
+                <ROUTE fromNode='Pulsador' fromField='touchTime' toNode='Sonido' toField='set_startTime'></ROUTE>
+                <ROUTE fromNode='Pulsador' fromField='isActive' toNode='Luz' toField='on'></ROUTE>
+            </Scene>
+        </X3D>
+    </x3d-canvas>
+</body>
+
+</html>
