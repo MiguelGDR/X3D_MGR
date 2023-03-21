@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<X3D profile='Immersive'>
+    <Scene>
+        <Transform translation='-15 0.5 15' scale='4.3 4 4.5'>
+            <Shape>
+                <Appearance>
+                    <Material></Material>
+                </Appearance>
+                <Text string='"TRES EN RAYA"'></Text>
+            </Shape>
+        </Transform>
+        <Shape>
+            <Appearance>
+                <ImageTexture url='"../texturas/3enraya.png"'></ImageTexture>
+                <Material diffuseColor='1.0 1.0 1.0' />
+            </Appearance>
+            <Box size='30 0.5 30' />
+        </Shape>
+    </Scene>
+</X3D>
