@@ -3,10 +3,10 @@
     <Scene>
         <Shape>
             <Appearance>
-                
+                <ImageTexture url='"../texturas/ojo.png"'></ImageTexture>
                 <Material></Material>
             </Appearance>
-            <Sphere radius = '1'></Sphere>
+            <Sphere radius = '0.09'></Sphere>
         </Shape>
     </Scene>
 </X3D>
