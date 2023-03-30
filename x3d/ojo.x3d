@@ -6,7 +6,7 @@
                 <ImageTexture url='"../texturas/ojo.png"'></ImageTexture>
                 <Material></Material>
             </Appearance>
-            <Sphere radius = '0.09'></Sphere>
+            <Sphere radius = '0.5'></Sphere>
         </Shape>
     </Scene>
 </X3D>

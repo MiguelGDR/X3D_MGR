@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <script src='https://create3000.github.io/code/x_ite/latest/x_ite.min.js'></script>
+    <style>
+        x3d-canvas {
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <x3d-canvas>
+        <X3D profile='Immersive'>
+            <Scene>
+
+                <TimeSensor DEF='Timer' cycleInterval='1.5' loop='true'></TimeSensor>
+
+                <!--Ojo Satélite-->
+                <Transform DEF = 'satelite'>
+                    <Inline url='"../x3d/ojo.x3d"'></Inline>
+                </Transform>
+                <PositionInterpolator DEF='Posicion' key='0      0.08   0.16    0.24    0.32    0.40    0.48    0.56    0.64    0.72    0.8     0.88    0.96    1.04    1.12    1.20    1.28'
+                    keyValue='-10 0 0   -8 0 4     -6 0 6     -4 0 8      0 0 10    4 0 8   6 0 6   8 0 4   10 0 0   8 0 -4     6 0 -6   4 0 -8     0 0 -10     -4 0 -8     -6 0 -6     -8 0 -4     0 0 0'>
+                </PositionInterpolator>
+
+                <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Posicion' toField='set_fraction'></ROUTE>
+                <ROUTE fromNode='Posicion' fromField='value_changed' toNode='satelite' toField='set_translation'></ROUTE>
+                <!--Ojo Saltarín-->
+                <Transform DEF='saltarin'>
+                    <Inline url='"../x3d/ojo.x3d"'></Inline>
+                </Transform>
+
+                <PositionInterpolator DEF='Posicion' key='   0      0.25     0.5        0.75         1'
+                    keyValue='-8 0 0   -8 1 0    -8 0 0     -8 1 0      -8 0 0'>
+                </PositionInterpolator>
+
+                <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Posicion' toField='set_fraction'></ROUTE>
+                <ROUTE fromNode='Posicion' fromField='value_changed' toNode='saltarin' toField='set_translation'>
+                </ROUTE>
+                <!--Ojo Mirón-->
+                <Transform DEF='miron' translation='-4 0 0'>
+                    <Inline url='"../x3d/ojo.x3d"'></Inline>
+                </Transform>
+
+                <OrientationInterpolator DEF='Rotacion'
+                    key='    0             0.25             0.5                  0.75                  1'
+                    keyValue='0 1 0 0    0 1 0 1.57    0 1 0 3.1415     0 1 0 -1.57         0 1 0 0'>
+                </OrientationInterpolator>
+                <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Rotacion' toField='set_fraction'></ROUTE>
+                <ROUTE fromNode='Rotacion' fromField='value_changed' toNode='miron' toField='set_rotation'></ROUTE>
+                <!--Ojo Saltón-->
+                <Transform DEF='salton' translation='0 0 0'>
+                    <Inline url='"../x3d/ojo.x3d"'></Inline>
+                </Transform>
+
+                <PositionInterpolator DEF='Escalado' key='   0       0.25      0.5      0.75       1'
+                    keyValue='0.5 0.5 0.5    1 1 1    2 2 2    1 1 1    0.5 0.5 0.5'>
+                </PositionInterpolator>
+
+                <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Escalado' toField='set_fraction'></ROUTE>
+                <ROUTE fromNode='Escalado' fromField='value_changed' toNode='salton' toField='set_scale'></ROUTE>
+                <!--Bola Colores-->
+                <Transform translation='4 0 0'>
+                    <Shape>
+                        <Appearance>
+                            <Material DEF='color' diffuseColor='1 0 0'></Material>
+                        </Appearance>
+                        <Sphere radius='0.5'></Sphere>
+                    </Shape>
+                </Transform>
+
+                <ColorInterpolator DEF='Coloreado' key='   0      0.25      0.5      0.75       1'
+                    keyValue='1 0 0   1 1 0    0 1 0    1 1 0    1 0 0'>
+                </ColorInterpolator>
+
+                <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Coloreado' toField='set_fraction'></ROUTE>
+                <ROUTE fromNode='Coloreado' fromField='value_changed' toNode='color' toField='set_diffuseColor'></ROUTE>
+                <!--Bolita-->
+                <Transform translation='3.5 0 2'>
+                    <Shape>
+                        <Appearance>
+                            <Material DEF='transparencia' diffuseColor=' 1 0 0 '></Material>
+                        </Appearance>
+                        <Sphere radius='0.25'></Sphere>
+                    </Shape>
+                </Transform>
+
+                <ScalarInterpolator DEF='Coloreado' key='0  0.25  0.5  0.75  1' keyValue='0   0.5    1    0.5    0'>
+                </ScalarInterpolator>
+
+                <ROUTE fromNode='Timer' fromField='fraction_changed' toNode='Coloreado' toField='set_fraction'></ROUTE>
+                <ROUTE fromNode='Coloreado' fromField='value_changed' toNode='transparencia' toField='set_transparency'>
+                </ROUTE>
+            </Scene>
+        </X3D>
+    </x3d-canvas>
+</body>
+
+</html>
